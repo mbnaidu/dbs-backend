@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -21,8 +23,8 @@ public class CustomerModel {
 	@Column(name = "accNo")
 	private Long accNo;
 	
-	@Column(name = "accNum")
-	private String accNum;
+	@Column(name = "accName")
+	private String accName;
 	
 	@Column(name = "blnc")
 	private Long blnc;
@@ -30,6 +32,7 @@ public class CustomerModel {
 	@Column(name = "od")
 	private Boolean od;
 	
-	@Column(name = "transactions")
-	private HashMap<String, Object> transaction;
+//	@JsonIgnore()
+//	@Column(name = "transactions")
+//	private HashMap<String, Object> transaction;
 }
