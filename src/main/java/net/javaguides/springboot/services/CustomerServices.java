@@ -6,6 +6,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,12 +17,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import net.javaguides.springboot.models.CustomerModel;
@@ -50,18 +48,7 @@ public class CustomerServices {
 		file.transferTo(tempFile);
 		Workbook workbook = WorkbookFactory.create(tempFile );
 		Sheet sheet = workbook.getSheetAt(0);
-//		Stream<Row> rowStream = StreamSupport.stream (sheet.spliterator(), false) ;
-//		rowStream.forEach(row -> {
-//			Stream<Cell> cellStream = StreamSupport.stream(row.spliterator(), false);
-//			List<Object> cellVals= cellStream.map(cell -> {
-//				String cellVal = cell.getStringCellValue();
-//				return cellVal;
-//			})
-//			.collect(Collectors.toList());
-//			System.out.println(cellVals);
-//		});
 		List<String> headers = new ArrayList<String>();
-        ArrayNode sheetData = mapper.createArrayNode();
         for (int j = 0; j <= sheet.getLastRowNum(); j++) {
         	Row row = sheet.getRow(j);
         	if (j == 0) {
@@ -86,18 +73,27 @@ public class CustomerServices {
                             rowData.put(headerName, l);
                             break;
                         case STRING:
-                            rowData.put(headerName, cell.getStringCellValue());
-                            break;
+                        	if(cell.getStringCellValue().equalsIgnoreCase("Yes")) {
+                        		rowData.put(headerName, true);
+	
+                        	}else if(cell.getStringCellValue().equalsIgnoreCase("No")) {
+                        		rowData.put(headerName, false);
+
+							}
+                        	else {
+                        		rowData.put(headerName, cell.getStringCellValue());
+
+                        	}
 						default:
 							break;
                         }
                     }
                 }
                 if(!rowData.toString().equals("{}")) {
-                    sheetData.add(rowData);
+                	CustomerModel node = mapper.convertValue(rowData, CustomerModel.class);
+                	customerRepository.save(node);
                 }
             }
         }
-        System.out.println(sheetData);
 	}
 }
