@@ -6,8 +6,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -59,6 +57,7 @@ public class CustomerServices {
             } else {
                 // reading work sheet data
                 ObjectNode rowData = mapper.createObjectNode();
+                //log.info("Object Node : "+rowData);
                 for (int k = 0; k < headers.size(); k++) {
                     Cell cell = row.getCell(k);
                     String headerName = headers.get(k);
@@ -69,8 +68,7 @@ public class CustomerServices {
                             break;
                         case NUMERIC:
                         	String str = NumberToTextConverter.toText(cell.getNumericCellValue());
-                        	long l=Long.parseLong(str);
-                            rowData.put(headerName, l);
+                            rowData.put(headerName, str);
                             break;
                         case STRING:
                         	if(cell.getStringCellValue().equalsIgnoreCase("Yes")) {
