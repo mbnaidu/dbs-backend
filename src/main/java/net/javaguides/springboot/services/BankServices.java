@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import net.javaguides.springboot.helpers.BankHelper;
 import net.javaguides.springboot.models.BankModel;
 import net.javaguides.springboot.repositories.BankRepository;
 

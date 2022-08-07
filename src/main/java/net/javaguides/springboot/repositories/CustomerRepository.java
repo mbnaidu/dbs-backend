@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import net.javaguides.springboot.models.CustomerModel;
 @Repository
-public interface CustomerRepository extends JpaRepository<CustomerModel, String> {
+public interface CustomerRepository extends JpaRepository<CustomerModel, Long> {
 
 }
