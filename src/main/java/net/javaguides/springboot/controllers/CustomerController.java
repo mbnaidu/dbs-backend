@@ -25,8 +25,6 @@ import net.javaguides.springboot.services.CustomerServices;
 @JsonIgnoreType()
 public class CustomerController {
 	
-	private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
-
 	@Autowired
 	CustomerServices customerServices;
 		
