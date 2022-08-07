@@ -1,6 +1,8 @@
 package net.javaguides.springboot.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,6 +10,8 @@ import javax.persistence.Table;
 @Table(name = "customer_table")
 public class CustomerModel {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	public String acc_no;
 	public String acc_name;
 	public String blnc;

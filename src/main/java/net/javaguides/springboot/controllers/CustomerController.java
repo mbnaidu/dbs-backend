@@ -14,14 +14,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import net.javaguides.springboot.services.CustomerServices;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/insert")
 @CrossOrigin("*")
 @JsonIgnoreType()
 public class CustomerController {
 	@Autowired
 	CustomerServices customerServices;
 		
-	@PostMapping("/upload")
+	@PostMapping("/customerData")
 	public void upload(@RequestParam("file") MultipartFile file) {
 		try {
 			customerServices.upload(file);
