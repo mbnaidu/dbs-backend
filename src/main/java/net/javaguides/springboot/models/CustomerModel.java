@@ -1,5 +1,6 @@
 package net.javaguides.springboot.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,25 +13,30 @@ public class CustomerModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	public String acc_no;
-	public String acc_name;
+	
+	@Column(name = "accNo")
+	public String accNo;
+	
+	@Column(name = "accName")
+	public String accName;
+	
 	public String blnc;
 	public boolean od;
 
-	public String getAcc_no() {
-		return acc_no;
+	public String getaccNo() {
+		return accNo;
 	}
 
-	public void setAcc_no(String acc_no) {
-		this.acc_no = acc_no;
+	public void setaccNo(String accNo) {
+		this.accNo = accNo;
 	}
 
-	public String getAcc_name() {
-		return acc_name;
+	public String getaccName() {
+		return accName;
 	}
 
-	public void setAcc_name(String acc_name) {
-		this.acc_name = acc_name;
+	public void setaccName(String accName) {
+		this.accName = accName;
 	}
 
 	public String getBlnc() {
@@ -53,8 +59,8 @@ public class CustomerModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((acc_name == null) ? 0 : acc_name.hashCode());
-		result = prime * result + ((acc_no == null) ? 0 : acc_no.hashCode());
+		result = prime * result + ((accName == null) ? 0 : accName.hashCode());
+		result = prime * result + ((accNo == null) ? 0 : accNo.hashCode());
 		result = prime * result + ((blnc == null) ? 0 : blnc.hashCode());
 		result = prime * result + (od ? 1231 : 1237);
 		return result;
@@ -69,15 +75,15 @@ public class CustomerModel {
 		if (getClass() != obj.getClass())
 			return false;
 		CustomerModel other = (CustomerModel) obj;
-		if (acc_name == null) {
-			if (other.acc_name != null)
+		if (accName == null) {
+			if (other.accName != null)
 				return false;
-		} else if (!acc_name.equals(other.acc_name))
+		} else if (!accName.equals(other.accName))
 			return false;
-		if (acc_no == null) {
-			if (other.acc_no != null)
+		if (accNo == null) {
+			if (other.accNo != null)
 				return false;
-		} else if (!acc_no.equals(other.acc_no))
+		} else if (!accNo.equals(other.accNo))
 			return false;
 		if (blnc == null) {
 			if (other.blnc != null)
@@ -91,7 +97,7 @@ public class CustomerModel {
 
 	@Override
 	public String toString() {
-		return "Root [acc_no=" + acc_no + ", acc_name=" + acc_name + ", blnc=" + blnc + ", od=" + od + "]";
+		return "Root [accNo=" + accNo + ", accName=" + accName + ", blnc=" + blnc + ", od=" + od + "]";
 	}
 
 }

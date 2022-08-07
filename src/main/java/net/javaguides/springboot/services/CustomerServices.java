@@ -94,4 +94,10 @@ public class CustomerServices {
             }
         }
 	}
+
+
+// To get byEmpName
+	public CustomerModel getByAccountNumber(String accNo) {
+		return customerRepository.findByAccNo(accNo);
+	}
 }
