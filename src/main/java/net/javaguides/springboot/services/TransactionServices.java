@@ -1,5 +1,7 @@
 package net.javaguides.springboot.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,10 @@ public class TransactionServices {
 	public String addTransaction(TransactionsModel transactionDeatils) {
 		transactionsRespository.save(transactionDeatils);
 		return "saved";
+	}
+
+	public List<TransactionsModel> getAllTransaction() {
+		// TODO Auto-generated method stub
+		return transactionsRespository.findAll();
 	}
 }

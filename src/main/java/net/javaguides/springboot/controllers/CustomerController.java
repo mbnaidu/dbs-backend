@@ -1,6 +1,8 @@
 package net.javaguides.springboot.controllers;
 
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import net.javaguides.springboot.models.CustomerModel;
+import net.javaguides.springboot.models.TransactionsModel;
 import net.javaguides.springboot.services.CustomerServices;
 
 @RestController
@@ -42,5 +45,11 @@ public class CustomerController {
 	@PostMapping("/get")
 	public CustomerModel getByAccountNumber(@RequestBody CustomerModel customer) {
 		return customerServices.getByAccountNumber(customer.accNo);
+	}
+	
+//	Get ALL Employees
+	@GetMapping("/list")
+	public List<CustomerModel> getListofAllCust() {
+		return customerServices.getAllCustomers();
 	}
 }
