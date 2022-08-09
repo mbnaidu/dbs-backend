@@ -14,20 +14,20 @@ public class MessagesModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	public String message_code;
-	public String message_instruction;
+	public String messageCode;
+	public String messageInstruction;
 	
-	public String getMessage_code() {
-		return message_code;
+	public String getmessageCode() {
+		return messageCode;
 	}
-	public void setMessage_code(String message_code) {
-		this.message_code = message_code;
+	public void setmessageCode(String messageCode) {
+		this.messageCode = messageCode;
 	}
-	public String getMessage_instruction() {
-		return message_instruction;
+	public String getmessageInstruction() {
+		return messageInstruction;
 	}
-	public void setMessage_instruction(String message_instruction) {
-		this.message_instruction = message_instruction;
+	public void setmessageInstruction(String messageInstruction) {
+		this.messageInstruction = messageInstruction;
 	}
 	
 
@@ -35,8 +35,8 @@ public class MessagesModel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((message_code == null) ? 0 : message_code.hashCode());
-		result = prime * result + ((message_instruction == null) ? 0 : message_instruction.hashCode());
+		result = prime * result + ((messageCode == null) ? 0 : messageCode.hashCode());
+		result = prime * result + ((messageInstruction == null) ? 0 : messageInstruction.hashCode());
 		return result;
 	}
 	@Override
@@ -48,15 +48,15 @@ public class MessagesModel {
 		if (getClass() != obj.getClass())
 			return false;
 		MessagesModel other = (MessagesModel) obj;
-		if (message_code == null) {
-			if (other.message_code != null)
+		if (messageCode == null) {
+			if (other.messageCode != null)
 				return false;
-		} else if (!message_code.equals(other.message_code))
+		} else if (!messageCode.equals(other.messageCode))
 			return false;
-		if (message_instruction == null) {
-			if (other.message_instruction != null)
+		if (messageInstruction == null) {
+			if (other.messageInstruction != null)
 				return false;
-		} else if (!message_instruction.equals(other.message_instruction))
+		} else if (!messageInstruction.equals(other.messageInstruction))
 			return false;
 		return true;
 	}
@@ -64,7 +64,7 @@ public class MessagesModel {
 
 	@Override
 	public String toString() {
-		return "MessagesModel [id=" + id + ", message_code=" + message_code + ", message_instruction="
-				+ message_instruction + "]";
+		return "MessagesModel [id=" + id + ", messageCode=" + messageCode + ", messageInstruction="
+				+ messageInstruction + "]";
 	}
 }

@@ -67,4 +67,15 @@ public class MessageServices {
 	            }
 	        }
 		}
+	
+
+//  To get all customers 
+	public List<MessagesModel> getAllMessages(){
+		return messagesRepository.findAll();
 	}
+	
+	public MessagesModel getByMessageCode(String messageCode) {
+		// TODO Auto-generated method stub
+		return messagesRepository.findByMessageCode(messageCode);
+	}
+}

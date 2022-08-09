@@ -7,5 +7,5 @@ import net.javaguides.springboot.models.MessagesModel;
 
 @Repository
 public interface MessagesRepository extends JpaRepository<MessagesModel, Long>{
-
+	public MessagesModel findByMessageCode(String messageCode);
 }
