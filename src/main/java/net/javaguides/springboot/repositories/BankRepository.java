@@ -8,5 +8,5 @@ import net.javaguides.springboot.models.BankModel;
 
 @Repository
 public interface BankRepository extends JpaRepository<BankModel, Long>{
-
+	public BankModel findByBic(String bic);
 }

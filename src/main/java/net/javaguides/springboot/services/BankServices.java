@@ -26,9 +26,13 @@ public class BankServices {
 	@Autowired
 	private BankRepository bankRepository;
 	
+//	get all customers 
+	public List<BankModel> getAllBanks(){
+		return bankRepository.findAll();
+	}
 	private ObjectMapper mapper = new ObjectMapper();
 	
-public void upload(MultipartFile file) throws Exception {
+	public void upload(MultipartFile file) throws Exception {
 		
 		Path tempDir = Files.createTempDirectory("");
 		File tempFile = tempDir.resolve( file.getOriginalFilename ()).toFile ();
@@ -65,5 +69,10 @@ public void upload(MultipartFile file) throws Exception {
                 }
             }
         }
+	}
+
+	public BankModel getByBICName(String bic) {
+		// TODO Auto-generated method stub
+		return bankRepository.findByBic(bic);
 	}
 }

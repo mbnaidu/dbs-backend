@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import net.javaguides.springboot.services.MessageServices;
 
 @RestController
-@RequestMapping("/insert")
+@RequestMapping("/messages")
 @CrossOrigin("*")
 @JsonIgnoreType()
 public class MessageController {
@@ -21,7 +21,7 @@ public class MessageController {
 	@Autowired
 	MessageServices messageServices;
 	
-	@PostMapping("/messagesData")
+	@PostMapping("insert/messagesData")
 	public void upload(@RequestParam("file") MultipartFile file) {
 		try {
 			messageServices.upload(file);
