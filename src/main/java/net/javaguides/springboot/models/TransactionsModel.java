@@ -35,7 +35,7 @@ public class TransactionsModel {
 	private String transType;
 	
 	@Column(name = "trans_amount")
-	private String transAmount;
+	private Double transAmount;
 	
 	@Column(name = "trans_date")
 	private String transDate;
@@ -81,11 +81,11 @@ public class TransactionsModel {
 		this.transId = transId;
 	}
 
-	public String getTransAmount() {
+	public Double getTransAmount() {
 		return transAmount;
 	}
 
-	public void setTransAmount(String transAmount) {
+	public void setTransAmount(Double transAmount) {
 		this.transAmount = transAmount;
 	}
 

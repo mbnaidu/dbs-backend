@@ -20,7 +20,7 @@ public class CustomerModel {
 	@Column(name = "accName")
 	public String accName;
 	
-	public Long blnc;
+	public Double blnc;
 	public boolean od;
 
 	public String getaccNo() {
@@ -39,11 +39,11 @@ public class CustomerModel {
 		this.accName = accName;
 	}
 
-	public Long getBlnc() {
+	public Double getBlnc() {
 		return blnc;
 	}
 
-	public void setBlnc(Long blnc) {
+	public void setBlnc(Double blnc) {
 		this.blnc = blnc;
 	}
 

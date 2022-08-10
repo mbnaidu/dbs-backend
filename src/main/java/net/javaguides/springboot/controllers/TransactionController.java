@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
+import net.javaguides.springboot.models.CustomerModel;
 import net.javaguides.springboot.models.TransactionsModel;
+import net.javaguides.springboot.repositories.CustomerRepository;
 import net.javaguides.springboot.services.TransactionServices;
 
 @RestController
@@ -24,8 +26,17 @@ public class TransactionController {
 	@Autowired
 	TransactionServices transactionServices;
 	
+	@Autowired
+	CustomerRepository customerRepository;
+	
 	@PostMapping("/add")
 	public String addEmployee(@RequestBody TransactionsModel transactionData) {
+		
+		CustomerModel cModel = customerRepository.findByAccNo(transactionData.getSenderNo());
+//		Double tt = transactionData.getTransAmount();
+		cModel.setBlnc(cModel.getBlnc()-transactionData.getTransAmount());
+		customerRepository.save(cModel);
+		
 		return transactionServices.addTransaction(transactionData);
 	}
 	
