@@ -7,12 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
 
 @Entity
 @Table(name = "transactions_table")
 public class TransactionsModel {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
@@ -34,21 +32,21 @@ public class TransactionsModel {
 	@Column(name = "trans_type")
 	private String transType;
 	
+	@Column(name = "bank_code")
+	private String bankCode;
+	
+	@Column(name = "bank_name")
+	private String bankName;
+	
 	@Column(name = "trans_amount")
 	private Double transAmount;
 	
 	@Column(name = "trans_date")
 	private String transDate;
 	
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	@Column(name = "message_code")
+	private String messageCode;
+	
 	public String getEmpName() {
 		return empName;
 	}
@@ -107,12 +105,39 @@ public class TransactionsModel {
 	}
 
 
+	public String getBankCode() {
+		return bankCode;
+	}
+
+	public void setBankCode(String bankCode) {
+		this.bankCode = bankCode;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	
+	public String getMessageCode() {
+		return messageCode;
+	}
+
+	public void setMessageCode(String messageCode) {
+		this.messageCode = messageCode;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((bankCode == null) ? 0 : bankCode.hashCode());
+		result = prime * result + ((bankName == null) ? 0 : bankName.hashCode());
 		result = prime * result + ((empName == null) ? 0 : empName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((messageCode == null) ? 0 : messageCode.hashCode());
 		result = prime * result + ((receiverNo == null) ? 0 : receiverNo.hashCode());
 		result = prime * result + ((senderNo == null) ? 0 : senderNo.hashCode());
 		result = prime * result + ((transAmount == null) ? 0 : transAmount.hashCode());
@@ -131,6 +156,16 @@ public class TransactionsModel {
 		if (getClass() != obj.getClass())
 			return false;
 		TransactionsModel other = (TransactionsModel) obj;
+		if (bankCode == null) {
+			if (other.bankCode != null)
+				return false;
+		} else if (!bankCode.equals(other.bankCode))
+			return false;
+		if (bankName == null) {
+			if (other.bankName != null)
+				return false;
+		} else if (!bankName.equals(other.bankName))
+			return false;
 		if (empName == null) {
 			if (other.empName != null)
 				return false;
@@ -140,6 +175,11 @@ public class TransactionsModel {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (messageCode == null) {
+			if (other.messageCode != null)
+				return false;
+		} else if (!messageCode.equals(other.messageCode))
 			return false;
 		if (receiverNo == null) {
 			if (other.receiverNo != null)
@@ -178,8 +218,9 @@ public class TransactionsModel {
 	@Override
 	public String toString() {
 		return "TransactionsModel [id=" + id + ", empName=" + empName + ", senderNo=" + senderNo + ", receiverNo="
-				+ receiverNo + ", transId=" + transId + ", transType=" + transType + ", transAmount=" + transAmount
-				+ ", transDate=" + transDate + "]";
+				+ receiverNo + ", transId=" + transId + ", transType=" + transType + ", bankCode=" + bankCode
+				+ ", bankName=" + bankName + ", transAmount=" + transAmount + ", transDate=" + transDate
+				+ ", messageCode=" + messageCode + "]";
 	}
 
 }

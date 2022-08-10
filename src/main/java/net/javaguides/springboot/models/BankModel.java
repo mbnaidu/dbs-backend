@@ -1,5 +1,6 @@
 package net.javaguides.springboot.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,31 +14,55 @@ public class BankModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	public String bic;
-	public String bank_name;
 	
+	@Column (name = "bic")
+	public String bic;
+	
+	@Column(name = "bank_name")
+	public String bankName;
+	
+	@Column (name = "bank_amount")
+	public double bankAmount = (double) 0;
+
 	public String getBic() {
 		return bic;
 	}
+
 	public void setBic(String bic) {
 		this.bic = bic;
 	}
-	public String getBank_name() {
-		return bank_name;
+
+	public String getBankName() {
+		return bankName;
 	}
-	public void setBank_name(String bank_name) {
-		this.bank_name = bank_name;
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public double getBankAmount() {
+		return bankAmount;
+	}
+
+	public void setBankAmount(double bankAmount) {
+		this.bankAmount = bankAmount;
 	}
 	
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bank_name == null) ? 0 : bank_name.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(bankAmount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((bankName == null) ? 0 : bankName.hashCode());
 		result = prime * result + ((bic == null) ? 0 : bic.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,22 +72,26 @@ public class BankModel {
 		if (getClass() != obj.getClass())
 			return false;
 		BankModel other = (BankModel) obj;
-		if (bank_name == null) {
-			if (other.bank_name != null)
+		if (Double.doubleToLongBits(bankAmount) != Double.doubleToLongBits(other.bankAmount))
+			return false;
+		if (bankName == null) {
+			if (other.bankName != null)
 				return false;
-		} else if (!bank_name.equals(other.bank_name))
+		} else if (!bankName.equals(other.bankName))
 			return false;
 		if (bic == null) {
 			if (other.bic != null)
 				return false;
 		} else if (!bic.equals(other.bic))
 			return false;
+		if (id != other.id)
+			return false;
 		return true;
 	}
-	
+
 
 	@Override
 	public String toString() {
-		return "BankModel [bic=" + bic + ", bank_name=" + bank_name + "]";
+		return "BankModel [id=" + id + ", bic=" + bic + ", bankName=" + bankName + ", bankAmount=" + bankAmount + "]";
 	}
 }
