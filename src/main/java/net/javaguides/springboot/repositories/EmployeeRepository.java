@@ -7,5 +7,5 @@ import net.javaguides.springboot.models.EmployeeModel;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<EmployeeModel, String>{
-
+	public EmployeeModel findByEmpName(String empName);
 }
